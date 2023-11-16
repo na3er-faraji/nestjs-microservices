@@ -6,6 +6,7 @@ import { LoggerModule } from '@app/common';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from 'joi';
+import { LocalStrategy } from './strategies/local.strategies';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import * as Joi from 'joi';
       }),
     }),
     JwtModule.registerAsync({
+      imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET'),
         signOptions: {
@@ -31,6 +33,6 @@ import * as Joi from 'joi';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService, LocalStrategy],
 })
 export class AuthModule {}
