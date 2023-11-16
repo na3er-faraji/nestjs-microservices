@@ -5,7 +5,7 @@ import { UserDocument } from './users/models/users.schema';
 import { Response } from 'express';
 import { CurrentUser } from './current-user.decorator';
 
-@Controller()
+@Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
