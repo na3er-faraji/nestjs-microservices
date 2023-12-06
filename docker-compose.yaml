@@ -53,3 +53,7 @@ services:
       - /usr/src/app/node_modules
   mongo:
     image: mongo
+  redis:
+    image: redis
+    ports:
+      - "6380:6379"
